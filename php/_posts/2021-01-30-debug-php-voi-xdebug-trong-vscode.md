@@ -12,22 +12,22 @@ title: "Debug PHP với XDebug trong VSCode"
 Cách cài đặt XDebug hết sức đơn giản. Đối với người dùng Linux hay Mac, chỉ cần thực hiện các lệnh dưới đây:
 
 #### Mac
-~~~shell
+~~~bash
 pecl install debug
 ~~~
 
 ### Linux
-~~~shell
+~~~bash
 sudo apt install php-xdebug
 ~~~
 
 ### Windows
 Với người dùng Windows thì việc cài đặt phức tạp hơn một chút. Rất may, XDebug đã cung cấp một công cụ nhằm hỗ trợ người dùng Windows tích hợp XDebug vào phiên bản PHP đang sử dụng, đó là [XDebug Wizard](https://xdebug.org/wizard). Để sử dụng XDebug Wizard, đầu tiên các bạn cần mở terminal lên và gõ lệnh:
-~~~shell
+~~~bash
 php -i
 ~~~
 Chúng ta cần lấy output từ lệnh này và paste vào form của XDebug Wizard. Người dùng Windows có thể sử dụng **clip.exe** để nhanh chóng copy output của một lệnh bất kì vào clipboard:
-~~~shell
+~~~bash
 php -i | clip
 ~~~
 Sau khi hoàn thành thì ấn vào nút **Analyse my phpinfo() output**. XDebug Wizard sẽ phân tích output của bạn và đưa ra chỉ dẫn cụ thể để cài đặt XDebug. Ví dụ máy bạn cài **xampp** và **PHP 7.4** thì các bước thực hiện sẽ được đưa ra như sau:

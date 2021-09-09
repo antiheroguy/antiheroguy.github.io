@@ -9,7 +9,7 @@ Format code một cách nhất quán là một vấn đề khó khăn, đặc bi
 
 ### Bước 1: Cài đặt PHP CS Fixer
 PHP Coding Standards Fixer (PHP CS Fixer) là một công cụ dùng để chuẩn hóa code PHP theo các quy chuẩn được định nghĩa trước. Đó có thể là PSR-1, PSR-2, v.v. hay một format nào đó do chính chúng ta định nghĩa. PHP CS Fixer được cài đặt qua [Composer](https://getcomposer.org/) bằng câu lệnh:
-~~~shell
+~~~bash
 composer global require friendsofphp/php-cs-fixer
 ~~~
 Chúng ta nên cài đặt PHP CS Fixer ở mức global để có thể sử dụng được trong bất cứ  dự án PHP nào.
@@ -20,19 +20,19 @@ Việc cài đặt PHP CS Fixer bằng Composer sẽ tạo ra một file **php-c
 %USERPROFILE%\AppData\Roaming\Composer\vendor\bin
 ```
 Vậy là từ giờ chúng ta đã có thể fix code PHP bằng cách mở **cmd** và gõ lệnh:
-~~~shell
+~~~bash
 php-cs-fixer fix /path/to/dir
 php-cs-fixer fix /path/to/file
 ~~~
 Để có thể fix code cho một file/folder cụ thể. Hoặc đơn giản:
-~~~shell
+~~~bash
 php-cs-fixer fix
 ~~~
 Để fix code trong toàn bộ dự án.
 
 ### Bước 3: Cấu hình PHP CS Fixer
 Chúng ta có thể định nghĩa các **Rule**, để PHP CS Fixer dựa vào đó mà format code theo ý muốn của chúng ta. Ví dụ:
-~~~shell
+~~~bash
 php-cs-fixer describe single_quote
 ~~~
 Rule **single_quote** cho phép chúng ta chuyển đổi tất cả những đoạn string trong code từ nháy kép sang nháy đơn.
