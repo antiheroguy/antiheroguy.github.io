@@ -60,7 +60,6 @@ sudo restorecon -R -v storage
 Nếu semanage chưa được cài đặt thì có thể cài thông qua các lệnh sau:
 ~~~bash
 sudo yum install -y policycoreutils-python
-
 sudo apt install -y policycoreutils-python-utils
 ~~~
 
