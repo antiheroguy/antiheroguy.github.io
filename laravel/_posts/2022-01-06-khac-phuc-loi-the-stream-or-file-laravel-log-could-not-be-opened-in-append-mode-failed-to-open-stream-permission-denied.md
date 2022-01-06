@@ -59,13 +59,8 @@ sudo restorecon -R -v storage
 ~~~
 Nếu semanage chưa được cài đặt thì có thể cài thông qua các lệnh sau:
 ~~~bash
-# CentOS 7
 sudo yum install -y policycoreutils-python
 
-# CentOS 8
-sudo dnf install -y policycoreutils-python-utils
-
-# Ubuntu
 sudo apt install -y policycoreutils-python-utils
 ~~~
 
