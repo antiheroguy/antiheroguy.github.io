@@ -5,7 +5,7 @@ title:  "Các extension hay cho Visual Studio Code"
 
 Visual Studio Code (VSCode) đã trở thành một trong những trình soạn thảo mã nguồn phổ biến nhất cho các nhà phát triển. Một trong những lợi ích lớn của VSCode đó là khả năng mở rộng sự tích hợp thông qua các extension. Hôm nay, chúng ta sẽ khám phá một số extension hữu ích mà bạn có thể cài đặt để nâng cao trải nghiệm làm việc với VSCode.
 
-## [Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense) (bmewburn.vscode-intelephense-client)
+## [Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) (bmewburn.vscode-intelephense-client)
    - Một extension mạnh mẽ cho phát triển PHP với tích hợp phân tích mã nguồn.
 
 ## [Tailwind CSS Intellisense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) (bradlc.vscode-tailwindcss)
@@ -32,7 +32,7 @@ Visual Studio Code (VSCode) đã trở thành một trong những trình soạn 
 ## [PHP Namespace Resolver](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver) (MehediDracula.php-namespace-resolver)
    - Tự động nhập và quản lý các khai báo PHP namespaces.
 
-## 1[Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) (mhutchie.git-graph)
+## [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) (mhutchie.git-graph)
     - Hiển thị biểu đồ Git tương tác và dễ đọc.
 
 ## [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) (ms-azuretools.vscode-docker)
