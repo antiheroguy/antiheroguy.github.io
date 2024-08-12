@@ -1,6 +1,6 @@
 # The primary author of this blog.
 # Must be the same as `author` in `_config.yml`.
-# You can change `author1` to your shortname.
+# Change `author1` to your shortname.
 author1:
   # Replace <...> with your own (remove the < >)
   name:              Hero
@@ -22,8 +22,8 @@ author1:
   # Social media icons in sidebar.
   # Comment/uncommet to show/hide. Rearrange to change the order in which they appear.
   social:
+    # twitter:         <username>
     github:          antiheroguy
-    # download:        <url>
     # email:           <mail@domain.tld>
     # rss:             https://<url>/feed.xml
     # facebook:        <username>
@@ -59,10 +59,5 @@ author1:
     # delicious:       <username>
     # stumbleupon:     <username>
     # paypal:          <username>
-
-  # Every author can have his/her own accent color and image.
-  # This will change the appearance of all pages of this author.
-  accent_color:      '#268bd2'
-  accent_image:
-    background:      '#202020'
-    overlay:         false
+    # download:        <url>
+    # keybase          <username>

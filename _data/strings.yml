@@ -10,51 +10,68 @@
 
 # Free version
 # ---------------------------------------------------------------------------------------
-home:                  Trang chủ
-pages:                 Trang
-posts:                 Bài viết
-about:                 Giới thiệu
-related_posts:         Bài viết tương tự
-other_projects:        Dự án khác
-comments:              Bình luận
-jump_to:               Đi tới
-navigation:            Điều hướng
-social:                Mạng xã hội
-links:                 Liên kết
-pagination:            Phân trang
-newer:                 Mới hơn
-older:                 Cũ hơn
-back:                  Quay lại
-permalink:             Liên kết trực tiếp
-permalink_icon:        icon-link
-templates:             Giao diện
+home:                  Home
+pages:                 Pages
+posts:                 Posts
+about:                 About
+related_posts:         Related Posts
+other_projects:        Other Projects
+comments:              Comments
+jump_to:               Jump to
+navigation:            Navigation
+social:                Social
+links:                 Links
+links_icon:            'icon-link'
+pagination:            Pagination
+newer:                 Newer
+older:                 Older
+forward:               Forward
+back:                  Back
+permalink:             Permalink
+permalink_icon:        'content-hash'
+templates:             Templates (for web app)
 present:               present
+toc:                   Table of Contents
+note:                  Note
+description:           Description
+search:                Search
+search_placeholder:    Type something…
 
-loading:               Đang tải…
-redirecting:           Đang chuyển hướng…
+loading:               Loading…
+redirecting:           Redirecting…
 
 continue_reading:      >
-  Đọc tiếp <!--post_title-->
+  Continue reading <!--post_title-->
 
 cookies_banner:
   text:                >
-    Trang web này sử dụng cookie. [Điều khoản](/cookies-policy/).
-  okay:                Đồng ý
+    This site uses cookies. [Cookies Policy](/cookies-policy/).
+  okay:                Okay
 
 not_found:
-  title:               '404: Không tìm thấy'
+  title:               '404: Page Not Found'
   message:             |
-    Trang bạn tìm kiếm không tồn tại.
-    Quay về trang chủ <!--home_link-->.
-  home_link:           Trở về trang chủ
+    Sorry, we've misplaced that URL or it's pointing to something that doesn't exist.
+    <!--home_link--> to try finding it again.
+  home_link:           Head back home
+
+offline:
+  title:               'You are Offline'
+  message:             |
+    Sorry, but you appear to be offline and this page has not been prepared for offline viewing.
+    <!--home_link--> to try finding another page.
+  home_link:           Head back home
 
 error:
-  title:               Lỗi
+  title:               Error
   message:             |
-    Có lỗi xảy ra trong khi tải <!--link-->.
+    Sorry, an error occurred while loading <!--link-->.
 
 # Separators
 # ---------------------------------------------------------------------------------------
+posted:                'Posted'
+last_modified_at:      'Last modified at'
+last_modified_at_icon: 'icon-history'
 colon:                 ':'
 separator:             '|'
 category_start:        'in '
@@ -62,11 +79,14 @@ category_spearator:    ' / '
 tag_start:             'on '
 tag_separator:         ', '
 from_to_separator:     '–'
+breadcrumbs_home:      'home'
+breadcrumbs_separator: '/'
 
 # Date formats
 # ---------------------------------------------------------------------------------------
 date_formats:
   post:                '%d %b %Y'
+  last_modified_at:    '%Y-%m-%d'
   related_post:        '%d %b %Y'
   list_group_by:       '%Y'
   list_entry:          '%d %b'
@@ -122,11 +142,19 @@ resume:
   skills:              Skills
   level:               Level
   interests:           Interests
+  summary:             Summary
   keywords:            Keywords
+  print:               Print
+  download_pdf:        PDF
+  download_vcf:        vCard
+  download_json:       JSON
   icons:
     fallback:          icon-link
     location:          icon-location
-    email:             icon-mail2
+    born:              icon-quill
+    citizenship:       icon-flag
+    maritalStatus:     icon-man-woman
+    email:             icon-envelop
     phone:             icon-phone
     website:           icon-home3
     work:              icon-briefcase
