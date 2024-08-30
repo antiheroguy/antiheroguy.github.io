@@ -5,8 +5,6 @@ title:  "Khắc phục lỗi The stream or file \"laravel.log\" could not be ope
 
 Khi làm việc với **Laravel**, có thể bạn đã gặp lỗi **"The stream or file 'laravel.log' could not be opened in append mode: failed to open stream: Permission denied"** ít nhất một lần. Lỗi này xảy ra khi Web Server (Apache, Nginx,...) không có quyền ghi vào file `/storage/logs/laravel.log`. Hãy cùng tìm hiểu cách khắc phục lỗi này một cách chi tiết và triệt để.
 
-# Show me the code
-
 ## Kiểm Tra Quyền và Chủ Sở Hữu của Thư Mục `storage`
 
 Đầu tiên, kiểm tra quyền và chủ sở hữu (owner) của thư mục `storage` bằng lệnh:

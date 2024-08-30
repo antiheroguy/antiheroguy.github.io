@@ -5,8 +5,6 @@ title: "Tự động format code PHP với PHP-CS-Fixer"
 
 Trong phát triển PHP, tuân thủ các chuẩn mã nguồn là vô cùng quan trọng để duy trì tính nhất quán và dễ bảo trì cho dự án. PHP-CS-Fixer là một công cụ mạnh mẽ giúp bạn tự động định dạng mã nguồn theo các quy tắc bạn thiết lập. Bài viết này sẽ hướng dẫn bạn cách cài đặt và cấu hình PHP-CS-Fixer trong VS Code thông qua Composer.
 
-# Show me the code
-
 ## Cài Đặt PHP-CS-Fixer với Composer
 
 Đầu tiên, chúng ta sẽ cài đặt PHP-CS-Fixer bằng Composer. Composer là một công cụ quản lý phụ thuộc phổ biến trong PHP, cho phép bạn dễ dàng cài đặt và quản lý các package trong dự án của mình.

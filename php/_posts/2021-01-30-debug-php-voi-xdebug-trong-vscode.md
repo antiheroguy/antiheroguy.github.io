@@ -5,8 +5,6 @@ title: "Debug PHP với XDebug trong VSCode"
 
 Debugging là một bước không thể thiếu trong quá trình phát triển phần mềm, giúp lập trình viên phát hiện và khắc phục lỗi nhanh chóng. Xdebug là một công cụ mạnh mẽ dành cho PHP, hỗ trợ bạn debug mã nguồn một cách hiệu quả. Bài viết này sẽ hướng dẫn bạn cách cài đặt và cấu hình Xdebug để sử dụng với VS Code.
 
-# Show me the code
-
 ## Cài Đặt Xdebug
 
 **Bước 1:** Kiểm tra phiên bản PHP và cài đặt Xdebug tương ứng.

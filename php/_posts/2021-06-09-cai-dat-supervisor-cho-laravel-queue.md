@@ -5,8 +5,6 @@ title:  "Cài đặt Supervisor cho Laravel Queue"
 
 **Supervisor** là một công cụ giám sát process tuyệt vời, đặc biệt hữu ích khi làm việc với **Laravel Queue**. Laravel Queue cho phép xử lý nhiều tác vụ cùng lúc dưới nền, giúp giảm thời gian xử lý và cải thiện cấu trúc mã. Tuy nhiên, Laravel Queue có thể ngừng hoạt động khi gặp lỗi hoặc không tự khởi động lại sau các thay đổi trong ứng dụng. Đây chính là lúc **Supervisor** trở thành giải pháp để giám sát và tự động khởi động lại các process khi cần thiết.
 
-# Show me the code
-
 ## Cài đặt Supervisor
 
 Để cài đặt Supervisor trên Ubuntu, sử dụng lệnh:

@@ -5,8 +5,6 @@ title:  "Tạo ứng dụng đếm ngược sử dụng requestAnimationFrame"
 
 Khi phát triển các ứng dụng web, đôi khi bạn cần một đồng hồ đếm ngược mà không bị ảnh hưởng bởi việc người dùng chuyển giữa các tab. Để đạt được điều này, bạn có thể sử dụng `requestAnimationFrame` kết hợp với sự kiện `visibilitychange`. Trong bài viết này, chúng ta sẽ tạo một ứng dụng đồng hồ đếm ngược đơn giản mà sẽ dừng lại khi người dùng rời khỏi tab và tiếp tục khi họ quay lại.
 
-# Show me the code
-
 ## Code HTML chi tiết
 
 ~~~html

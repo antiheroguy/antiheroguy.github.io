@@ -5,8 +5,6 @@ title:  "Triển khai Local Package cho Composer"
 
 Khi phát triển một package PHP, việc kiểm tra và chỉnh sửa thường xuyên là điều không thể tránh khỏi. Để tiện cho quá trình phát triển, bạn có thể sử dụng Composer để triển khai package cục bộ (local package). Điều này giúp bạn có thể sửa đổi code trong thư mục chứa package và thấy ngay những thay đổi trong dự án sử dụng package đó mà không cần phải update thủ công trong `vendor`. Dưới đây là hướng dẫn chi tiết.
 
-# Show me the code
-
 ## Chuẩn Bị Cấu Trúc Thư Mục
 
 Giả sử bạn có cấu trúc thư mục như sau:
