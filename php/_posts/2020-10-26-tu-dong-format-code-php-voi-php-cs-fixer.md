@@ -3,53 +3,113 @@ layout: post
 title: "Tự động format code PHP với PHP-CS-Fixer"
 ---
 
-Format code một cách nhất quán là một vấn đề khó khăn, đặc biệt là khi làm việc theo nhóm. Trong bài viết này, chúng ta sẽ cùng nhau tìm hiểu cách cấu hình tự động format code PHP với tiện ích **PHP CS Fixer**.
+Trong phát triển PHP, tuân thủ các chuẩn mã nguồn là vô cùng quan trọng để duy trì tính nhất quán và dễ bảo trì cho dự án. PHP-CS-Fixer là một công cụ mạnh mẽ giúp bạn tự động định dạng mã nguồn theo các quy tắc bạn thiết lập. Bài viết này sẽ hướng dẫn bạn cách cài đặt và cấu hình PHP-CS-Fixer trong VS Code thông qua Composer.
 
-## Show me the code
+# Show me the code
 
-### Bước 1: Cài đặt PHP CS Fixer
-PHP Coding Standards Fixer (PHP CS Fixer) là một công cụ dùng để chuẩn hóa code PHP theo các quy chuẩn được định nghĩa trước. Đó có thể là PSR-1, PSR-2, v.v. hay một format nào đó do chính chúng ta định nghĩa. PHP CS Fixer được cài đặt qua [Composer](https://getcomposer.org/) bằng câu lệnh:
+## Cài Đặt PHP-CS-Fixer với Composer
+
+Đầu tiên, chúng ta sẽ cài đặt PHP-CS-Fixer bằng Composer. Composer là một công cụ quản lý phụ thuộc phổ biến trong PHP, cho phép bạn dễ dàng cài đặt và quản lý các package trong dự án của mình.
+
+**Bước 1:** Mở terminal và điều hướng đến thư mục dự án của bạn.
+
+**Bước 2:** Chạy lệnh sau để cài đặt PHP-CS-Fixer:
+
 ~~~bash
-composer global require friendsofphp/php-cs-fixer
+composer require --dev friendsofphp/php-cs-fixer
 ~~~
-Chúng ta nên cài đặt PHP CS Fixer ở mức global để có thể sử dụng được trong bất cứ  dự án PHP nào.
 
-### Bước 2: Thêm PHP CS Fixer vào biến môi trường
-Việc cài đặt PHP CS Fixer bằng Composer sẽ tạo ra một file **php-cs-fixer.bat** trong thư mục bin của Composer. Tương tự như những command line tool được cài đặt thông qua Composer khác, điều bạn cần làm là thêm đường dẫn của thư mục **vendor/bin** trong Composer vào **environment variable** (biến môi trường), để có thể thực thi được giao diện dòng lệnh của tool. Với người dùng Windows, có thể mở start menu và tìm kiếm **environment variables**. Chỉnh sửa phần **PATH** và thêm vào dòng dưới đây:
-```
-%USERPROFILE%\AppData\Roaming\Composer\vendor\bin
-```
-Vậy là từ giờ chúng ta đã có thể fix code PHP bằng cách mở **cmd** và gõ lệnh:
-~~~bash
-php-cs-fixer fix /path/to/dir
-php-cs-fixer fix /path/to/file
-~~~
-Để có thể fix code cho một file/folder cụ thể. Hoặc đơn giản:
-~~~bash
-php-cs-fixer fix
-~~~
-Để fix code trong toàn bộ dự án.
+Lệnh này sẽ cài đặt PHP-CS-Fixer dưới dạng một package phát triển (`--dev`), giúp bạn sử dụng công cụ này mà không làm ảnh hưởng đến môi trường sản xuất.
 
-### Bước 3: Cấu hình PHP CS Fixer
-Chúng ta có thể định nghĩa các **Rule**, để PHP CS Fixer dựa vào đó mà format code theo ý muốn của chúng ta. Ví dụ:
-~~~bash
-php-cs-fixer describe single_quote
-~~~
-Rule **single_quote** cho phép chúng ta chuyển đổi tất cả những đoạn string trong code từ nháy kép sang nháy đơn.
-Danh sách các Rule có thể tham khảo chi tiết ở [đây](https://github.com/FriendsOfPHP/PHP-CS-Fixer#rules)
-Sau khi đã định nghĩa được những Rule mà mình cần, chúng ta có thể lưu lại cấu hình bằng cách tạo một file **.php-cs-fixer.php** ở thư mục root của dự án. Điều này giúp chúng ta có thể định nghĩa được format code theo từng dự án. Mặc định mỗi khi chạy PHP CS Fixer, một file **.php-cs-fixer.cache** sẽ được sinh ra ở cùng cấp với file **.php-cs-fixer.php** để cache lại quá trình fix code. Điều này sẽ tăng tốc độ fix code bằng việc chỉ fix các file đã được sửa đổi kể từ lần chạy cuối cùng. Hãy thêm **.php-cs-fixer.cache** vào **.gitignore** để tránh việc conflict trong quá trình fix code giữa các thiết bị khác nhau.
+## Tạo File Cấu Hình Cho PHP-CS-Fixer
 
-### Bước 4: Thiết lập tự động format code với VS Code
-VS Code không chỉ là một text editor tuyệt vời mà nó còn hỗ trợ vô vàn những tiện ích phục vụ cho nhiều mục đích khác nhau. Cụ thể, chúng ta có thể sử dụng tiện ích **php cs fixer** để thiết lập tự động format mỗi khi save file. Đầu tiên chúng ta cần tải tiện ích **php cs fixer** tại [đây](https://marketplace.visualstudio.com/items?itemName=junstyle.php-cs-fixer)
-Sau khi cài đặt thành công, hãy mở file **setting** của VS Code và thêm đoạn cấu hình sau:
-~~~json
-{
-	"php-cs-fixer.executablePath": "${extensionPath}\\php-cs-fixer.phar",
-	"php-cs-fixer.executablePathWindows": "C:\\Users\\{USER_NAME}\\AppData\\Roaming\\Composer\\vendor\\bin\\php-cs-fixer.bat",
-	"php-cs-fixer.onsave": true,
-	"php-cs-fixer.autoFixBySemicolon": true,
-	"php-cs-fixer.formatHtml": true,
-}
+Để PHP-CS-Fixer hoạt động theo các quy tắc mà bạn mong muốn, bạn cần tạo một file cấu hình.
+
+**Bước 1:** Tạo file `.php-cs-fixer.php` trong thư mục gốc của dự án.
+
+**Bước 2:** Thêm nội dung sau vào file `.php-cs-fixer.php`:
+
+~~~php
+<?php
+
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+
+$finder = Finder::create()
+    ->in(__DIR__)
+    ->exclude(['vendor', 'node_modules'])
+    ->name('*.php');
+
+return (new Config())
+    ->setRules([
+        '@PSR12' => true,
+        'array_syntax' => ['syntax' => 'short'],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
+        'no_unused_imports' => true,
+        'single_quote' => true,
+    ])
+    ->setFinder($finder);
 ~~~
-Trong đó **USER_NAME** là thư mục người dùng của bạn.
-Done, vậy là từ giờ code PHP của bạn sẽ được tự động format mỗi khi save file. Rất tuyệt vời phải không nào?
+
+Trong file này, chúng ta thiết lập các quy tắc định dạng mã nguồn như sử dụng chuẩn PSR-12, cú pháp mảng ngắn, sắp xếp import theo thứ tự bảng chữ cái, loại bỏ import không sử dụng, và sử dụng dấu nháy đơn. Bạn có thể tham khảo thêm các quy tắc khác [tại đây](https://cs.symfony.com/doc/rules/index.html).
+
+## Tích Hợp PHP-CS-Fixer với VS Code
+
+Để tích hợp PHP-CS-Fixer vào VS Code, chúng ta sẽ sử dụng extension "PHP CS Fixer" và cấu hình nó để tự động định dạng mã nguồn khi lưu file.
+
+**Bước 1:** Cài đặt extension "PHP CS Fixer" trong VS Code.
+
+- Mở VS Code, đi đến phần Extensions (`Ctrl + Shift + X`).
+- Tìm kiếm "PHP CS Fixer" và cài đặt extension từ junstyle.
+
+**Bước 2:** Cấu hình extension "PHP CS Fixer".
+
+Thay vì sửa file cấu hình `settings.json` toàn cục, chúng ta sẽ lưu cấu hình ở mức độ dự án để dễ dàng quản lý trong VCS.
+
+- Mở VS Code, đi đến phần Explorer, và tạo thư mục `.vscode` trong thư mục gốc của dự án (nếu chưa có).
+- Tạo file `settings.json` bên trong thư mục `.vscode` và thêm các cấu hình sau:
+
+    ~~~json
+    {
+        "php-cs-fixer.executablePath": "./vendor/bin/php-cs-fixer",
+        "php-cs-fixer.onsave": true,
+        "php-cs-fixer.config": ".php-cs-fixer.php",
+        "editor.formatOnSave": true,
+        "[php]": {
+            "editor.defaultFormatter": "junstyle.php-cs-fixer"
+        }
+    }
+    ~~~
+
+    - `"php-cs-fixer.executablePath"`: Chỉ định đường dẫn đến PHP-CS-Fixer trong thư mục `vendor` của dự án.
+    - `"php-cs-fixer.onsave"`: Bật tính năng tự động fix code khi lưu file.
+    - `"php-cs-fixer.config"`: Đặt đường dẫn tới file cấu hình `.php-cs-fixer.php`.
+    - `"editor.formatOnSave"`: Bật tính năng tự động định dạng mã khi lưu file.
+    - `"[php]"`: Đặt PHP-CS-Fixer làm trình định dạng mặc định cho các file PHP.
+
+Việc lưu cấu hình tại mức độ dự án trong thư mục `.vscode` giúp bạn dễ dàng quản lý và chia sẻ các thiết lập này với team thông qua VCS, đảm bảo mọi người cùng sử dụng chung một cấu hình.
+
+## Chạy PHP-CS-Fixer
+
+Bạn có thể chạy PHP-CS-Fixer theo hai cách:
+
+**Cách 1: Chạy từ terminal**
+
+Để fix toàn bộ dự án:
+
+~~~bash
+./vendor/bin/php-cs-fixer fix
+~~~
+
+Để fix một file cụ thể:
+
+~~~bash
+./vendor/bin/php-cs-fixer fix path/to/your/file.php
+~~~
+
+**Cách 2: Sử dụng phím tắt trong VS Code**
+
+- Mở file PHP mà bạn muốn fix.
+- Nhấn `Ctrl + Shift + I` để định dạng file ngay lập tức theo các quy tắc đã cấu hình.
+
+Với các bước trên, bạn đã cấu hình thành công PHP-CS-Fixer để tự động sửa lỗi mã nguồn trong dự án PHP của mình và tích hợp hoàn toàn với VS Code. Điều này giúp mã nguồn của bạn luôn tuân thủ các tiêu chuẩn và giảm thiểu thời gian sửa lỗi thủ công. Việc lưu cấu hình tại mức độ dự án giúp bạn dễ dàng chia sẻ và quản lý cấu hình trong đội ngũ.

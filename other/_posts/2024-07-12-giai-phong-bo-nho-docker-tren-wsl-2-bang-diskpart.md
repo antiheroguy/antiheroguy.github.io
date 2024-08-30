@@ -77,7 +77,7 @@ detach vdisk
 
 Lệnh này sẽ ngắt kết nối file VHDX khỏi hệ thống, hoàn tất quá trình giải phóng dung lượng.
 
-#### Bước 7: Thoát diskpart
+### Bước 7: Thoát diskpart
 
 Cuối cùng, nhập lệnh sau để thoát khỏi `diskpart`:
 

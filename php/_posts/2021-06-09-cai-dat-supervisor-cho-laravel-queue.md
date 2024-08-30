@@ -3,39 +3,53 @@ layout: post
 title:  "Cài đặt Supervisor cho Laravel Queue"
 ---
 
-**Laravel Queue** là một công cụ mạnh mẽ cho phép thực thi nhiều process cùng lúc trong background. Nó vô cùng hữu ích trong việc làm giảm thời gian thực thi cũng như giúp cấu trúc code trở nên tốt hơn. Tiện dụng là vậy, song **Laravel Queue** cũng có một số nhược điểm, như có thể bị dừng chạy nếu có lỗi xảy ra, hoặc không thể tự khởi động lại mỗi khi có sự thay đổi trong ứng dụng. Đây là lúc mà chúng ta cần đến một **Process Monitor**, và **Supervisor** chính là một trong số đó. 
+**Supervisor** là một công cụ giám sát process tuyệt vời, đặc biệt hữu ích khi làm việc với **Laravel Queue**. Laravel Queue cho phép xử lý nhiều tác vụ cùng lúc dưới nền, giúp giảm thời gian xử lý và cải thiện cấu trúc mã. Tuy nhiên, Laravel Queue có thể ngừng hoạt động khi gặp lỗi hoặc không tự khởi động lại sau các thay đổi trong ứng dụng. Đây chính là lúc **Supervisor** trở thành giải pháp để giám sát và tự động khởi động lại các process khi cần thiết.
 
-## Show me the code
+# Show me the code
 
-### Cài đặt Supervisor
-Chúng ta có thể cài đặt Supervisor trên Ubuntu thông qua câu lệnh
+## Cài đặt Supervisor
+
+Để cài đặt Supervisor trên Ubuntu, sử dụng lệnh:
+
 ~~~bash
 sudo apt install supervisor
 ~~~
-Trong trường hợp sử dụng Centos thì cần phải cài đặt **epel-release** trước
+
+Nếu bạn sử dụng CentOS, cần cài đặt **epel-release** trước:
+
 ~~~bash
 sudo yum install epel-release
 ~~~
-Riêng với Centos trên Amazon EC2 thì **epel-release** phải được cài đặt thông qua **Amazon Linux Extra**
+
+Trên CentOS chạy trên Amazon EC2, bạn sẽ cần cài đặt **epel-release** thông qua **Amazon Linux Extras**:
+
 ~~~bash
 sudo amazon-linux-extras install epel
 ~~~
-Còn với dùng Windows, có thể cài đặt Supervisor thông qua **pip**
+
+Trên Windows, Supervisor có thể được cài đặt qua **pip**:
+
 ~~~bash
 pip install supervisor
 ~~~
 
-### Cấu hình Supervisor
-Thông thường file cấu hình của Supervisor sẽ nằm ở `/etc/supervisord.conf`. Nếu file này chưa tồn tại, có thể tạo mới với thông số mặc định thông qua lệnh
+## Cấu hình Supervisor
+
+Thông thường, file cấu hình chính của Supervisor sẽ nằm tại `/etc/supervisord.conf`. Nếu file này chưa tồn tại, bạn có thể tạo mới với cấu hình mặc định bằng lệnh:
+
 ~~~bash
 echo_supervisord_conf > /etc/supervisord.conf
 ~~~
-Có thể thấy dòng **include** ở cuối cùng cho phép chúng ta tách cấu hình Supervisor ra thành nhiều file riêng biệt
+
+Bên trong file cấu hình, phần **include** ở cuối cho phép bạn tách cấu hình thành nhiều file riêng biệt:
+
 ~~~ini
 [include]
 files = supervisord.d/*.ini
 ~~~
-Tiếp theo, chúng ta sẽ tạo một file có tên là **laravel-worker.ini** ở trong thư mục **supervisord.d** và lưu lại với nội dung như sau
+
+Tiếp theo, tạo file **laravel-worker.ini** trong thư mục **supervisord.d** với nội dung sau:
+
 ~~~ini
 [program:laravel-worker]
 process_name=%(program_name)s_%(process_num)02d
@@ -50,56 +64,91 @@ redirect_stderr=true
 stdout_logfile=/var/www/html/storage/logs/queue.log
 stopwaitsecs=3600
 ~~~
-Trong đó, **numprocs** = 3 đại diện cho việc Supervisor sẽ chạy 3 process `queue:work` và giám sát chúng, tự khởi động lại nếu có lỗi xảy ra. Cũng cần chỉ định đúng đường dấn đến file **artisan** nằm trong folder dự án ở mục **command**, cũng như nơi lưu **logfile**. Các cấu hình khác có thể tham khảo ở [đây](http://supervisord.org/configuration.html)
 
-Sau khi cập nhật thay đổi, chúng ta cần phải khởi động process lên bằng cách chạy
+Trong đó:
+- **numprocs=3**: Supervisor sẽ chạy và giám sát 3 process `queue:work`, tự động khởi động lại nếu có lỗi.
+- **command**: Đảm bảo chỉ định đúng đường dẫn đến file **artisan** trong thư mục dự án của bạn.
+- **stdout_logfile**: Chỉ định nơi lưu log file.
+
+Để biết thêm chi tiết về các cấu hình, bạn có thể tham khảo [tài liệu chính thức của Supervisor](http://supervisord.org/configuration.html).
+
+Sau khi cấu hình, khởi động các process với các lệnh:
+
 ~~~bash
 sudo supervisorctl reread
-
 sudo supervisorctl update
-
 sudo supervisorctl start laravel-worker:*
 ~~~
-Nếu gặp phải lỗi:
+
+Nếu gặp lỗi như sau:
+
 ~~~bash
 error: <class 'socket.error'>, [Errno 2] No such file or directory: file: /usr/lib64/python2.7/socket.py line: 228
 ~~~
-Có nghĩa là Supervisor chưa được start lên, chỉ cần chạy lệnh sau để restart lại
+
+Điều này có nghĩa là Supervisor chưa được khởi động. Chạy lệnh sau để khởi động lại Supervisor:
+
 ~~~bash
 sudo service supervisord restart
 ~~~
-Chúng ta có thể kiểm tra trạng thái monitor của Supervisor thông qua câu lệnh
+
+Kiểm tra trạng thái của các process với lệnh:
+
 ~~~bash
 sudo supervisorctl status
 ~~~
-Output hiển thị như dưới đây là đã thành công
+
+Nếu kết quả hiển thị như dưới đây, Supervisor đã hoạt động thành công:
+
 ~~~bash
 laravel-worker:laravel-worker_00   RUNNING   pid 1233, uptime 0:00:30
 laravel-worker:laravel-worker_01   RUNNING   pid 1234, uptime 0:00:30
 laravel-worker:laravel-worker_02   RUNNING   pid 1235, uptime 0:00:30
 ~~~
-Ngoài ra, chúng ta có thể cài đặt **Redis** để sử dụng làm **Queue Driver** cho Laravel Queue
+
+## Cài đặt Redis cho Laravel Queue
+
+Để sử dụng **Redis** làm **Queue Driver** cho Laravel, bạn có thể cài đặt Redis trên Ubuntu với lệnh:
+
 ~~~bash
 sudo apt install redis-server
 ~~~
-Lưu ý: Với Centos thì cần phải cài đặt **epel-release** trước khi cài Redis
-Sau khi đã cài đặt thành công, tiến hành khởi động Redis
+
+Trên CentOS, cần cài đặt **epel-release** trước khi cài Redis:
+
+~~~bash
+sudo yum install epel-release
+sudo yum install redis
+~~~
+
+Khởi động Redis sau khi cài đặt thành công:
+
 ~~~bash
 sudo systemctl start redis.service
 ~~~
-Có thể sử dụng câu lệnh **enable** để thiết lập Redis khởi động cùng hệ thống
+
+Để Redis khởi động cùng hệ thống:
+
 ~~~bash
 sudo systemctl enable redis-server
 ~~~
-Để sử dụng Redis làm Queue Driver cho Laravel, mở file **.env** và sửa lại như sau
+
+Để sử dụng Redis làm Queue Driver cho Laravel, mở file **.env** và chỉnh sửa như sau:
+
 ~~~ini
 QUEUE_CONNECTION=redis
 ~~~
-Nếu trong quá trình thực thi Job gặp phải lỗi
+
+Nếu gặp lỗi sau khi sử dụng Redis:
+
 ~~~bash
 Class 'Predis\Client' not found
 ~~~
-Có nghĩa là thư viện predis/predis chưa được cài đặt
+
+Bạn cần cài đặt thư viện **predis/predis** bằng Composer:
+
 ~~~bash
 composer require predis/predis
 ~~~
+
+Với các bước trên, Supervisor sẽ giúp bạn giám sát và tự động khởi động lại các process của Laravel Queue, đảm bảo hệ thống luôn hoạt động ổn định và hiệu quả.

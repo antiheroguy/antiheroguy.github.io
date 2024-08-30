@@ -3,67 +3,175 @@ layout: post
 title: "Debug PHP với XDebug trong VSCode"
 ---
 
-**Debug** (gỡ lỗi) là một phần không thể thiếu trong quá trình phát triển phần mềm. Trong khi các developer .Net hay Java thường có trong tay một loạt những tool, IDE hỗ trợ việc debug một cách hoàn chỉnh, các developer PHP lại không có nhiều sự lựa chọn như vậy. Nếu bạn không có nhiều kinh nghiệm trong việc debug các ứng dụng, chắc chắn bạn sẽ phải sử dụng các hàm `error_log()` và `var_dump()` để kiểm tra rất nhiều biến của mình. May mắn thay, có một vài công cụ mã nguồn mở cung cấp cho các nhà phát triển PHP khả năng debug tương tự như của một IDE đắt tiền. VSCode chính là một trong số đó. Bài viết này sẽ hướng dẫn các bạn cách thiết lập XDebug trong VSCode để debug một ứng dụng PHP.
+Debugging là một bước không thể thiếu trong quá trình phát triển phần mềm, giúp lập trình viên phát hiện và khắc phục lỗi nhanh chóng. Xdebug là một công cụ mạnh mẽ dành cho PHP, hỗ trợ bạn debug mã nguồn một cách hiệu quả. Bài viết này sẽ hướng dẫn bạn cách cài đặt và cấu hình Xdebug để sử dụng với VS Code.
 
-## Show me the code
-[XDebug](https://xdebug.org/) là một **extension** (phần mở rộng) của PHP, giúp các nhà phát triển debug và phát triển các dự án của họ một cách suôn sẻ. XDebug cho phép chúng ta thêm các **breakpoint** (điểm dừng) trong code và tạm dừng việc thực thi code để có thể kiểm tra giá trị của các biến tại mỗi breakpoint. 
+# Show me the code
 
-### Cài đặt XDebug
-Cách cài đặt XDebug hết sức đơn giản. Đối với người dùng Linux hay Mac, chỉ cần thực hiện các lệnh dưới đây:
+## Cài Đặt Xdebug
 
-#### Mac
+**Bước 1:** Kiểm tra phiên bản PHP và cài đặt Xdebug tương ứng.
+
+Bạn có thể kiểm tra phiên bản PHP bằng lệnh sau:
+
 ~~~bash
-pecl install debug
+php -v
 ~~~
 
-### Linux
+**Bước 2:** Cài đặt Xdebug.
+
+Cách cài đặt Xdebug sẽ khác nhau tùy thuộc vào hệ điều hành và phiên bản PHP. Bạn có thể cài đặt Xdebug thông qua `pecl`:
+
 ~~~bash
-sudo apt install php-xdebug
+pecl install xdebug
 ~~~
 
-### Windows
-Với người dùng Windows thì việc cài đặt phức tạp hơn một chút. Rất may, XDebug đã cung cấp một công cụ nhằm hỗ trợ người dùng Windows tích hợp XDebug vào phiên bản PHP đang sử dụng, đó là [XDebug Wizard](https://xdebug.org/wizard). Để sử dụng XDebug Wizard, đầu tiên các bạn cần mở terminal lên và gõ lệnh:
-~~~bash
-php -i
-~~~
-Chúng ta cần lấy output từ lệnh này và paste vào form của XDebug Wizard. Người dùng Windows có thể sử dụng **clip.exe** để nhanh chóng copy output của một lệnh bất kì vào clipboard:
-~~~bash
-php -i | clip
-~~~
-Sau khi hoàn thành thì ấn vào nút **Analyse my phpinfo() output**. XDebug Wizard sẽ phân tích output của bạn và đưa ra chỉ dẫn cụ thể để cài đặt XDebug. Ví dụ máy bạn cài **xampp** và **PHP 7.4** thì các bước thực hiện sẽ được đưa ra như sau:
+Hoặc nếu bạn dùng Ubuntu, bạn có thể cài đặt thông qua `apt`:
 
- 1. Download php_xdebug-3.0.2-7.4-vc15-x86_64.dll
- 2. Move the downloaded file to C:\xampp\bin\php\php-7.4.12\ext
- 3. Edit C:\xampp\bin\php\php-7.4.12\php.ini and add the line
-zend_extension = C:\xampp\bin\php\php-7.4.12\ext\php_xdebug-3.0.2-7.4-vc15-x86_64.dll
+~~~bash
+sudo apt-get install php-xdebug
+~~~
 
-### Cấu hình XDebug trong VSCode
-Cách tích hợp XDebug trong VSCode cũng rất đơn giản, chúng ta chỉ cần tìm kiếm tiện ích **PHP Debug** rồi cài đặt. Sau đó mở file cấu hình **php.ini** và thêm vào đoạn sau:
-```
-xdebug.mode = debug
-xdebug.start_with_request = yes
-xdebug.client_port = 9000
-```
-Tiếp theo, mở tab **Debug** ở thanh bên trái của VSCode và ấn vào menu Debug rồi chọn **Add Configuration**. Một popup sẽ hiện ra, chọn tiếp PHP và một file *launch.json* sẽ được tạo ra với nội dung như sau:
+**Bước 3:** Kích hoạt Xdebug trong file cấu hình PHP (`php.ini`).
+
+Tìm vị trí file `php.ini` bằng lệnh:
+
+~~~bash
+php --ini
+~~~
+
+Thêm hoặc cập nhật các dòng cấu hình sau vào `php.ini`:
+
+~~~ini
+zend_extension=xdebug.so
+xdebug.mode=debug
+xdebug.start_with_request=yes
+xdebug.client_host=127.0.0.1
+xdebug.client_port=9003
+xdebug.log=/tmp/xdebug.log
+~~~
+
+- `xdebug.mode=debug`: Kích hoạt chế độ debug.
+- `xdebug.start_with_request=yes`: Xdebug sẽ khởi động cùng với mỗi yêu cầu.
+- `xdebug.client_host=127.0.0.1`: Địa chỉ IP của máy client (VS Code).
+- `xdebug.client_port=9003`: Cổng để VS Code và Xdebug kết nối (mặc định là 9003).
+
+## Cấu Hình VS Code Để Debug
+
+**Bước 1:** Cài đặt extension "PHP Debug" từ Felix Becker trong VS Code.
+
+- Mở VS Code, đi đến phần Extensions (`Ctrl + Shift + X`).
+- Tìm kiếm "PHP Debug" và cài đặt extension.
+
+**Bước 2:** Cấu hình `launch.json` trong VS Code.
+
+- Mở thư mục dự án của bạn trong VS Code.
+- Tạo thư mục `.vscode` nếu chưa có, và tạo file `launch.json` với nội dung sau:
+
 ~~~json
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Listen for XDebug",
-      "type": "php",
-      "request": "launch",
-      "port": 9000
-    },
-    {
-      "name": "Launch currently open script",
-      "type": "php",
-      "request": "launch",
-      "program": "${file}",
-      "cwd": "${fileDirname}",
-      "port": 9000
-    }
-  ]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/path/to/your/php/files": "${workspaceFolder}"
+            }
+        }
+    ]
 }
 ~~~
-Vậy là chúng ta đã hoàn thành việc cấu hình XDebug trong VSCode cho project hiện tại. Để có thể sử dụng XDebug ở bất cứ project nào, chỉ cần copy nội dung của file *launch.json* và paste vào phần **launch** trong file *settings.json* của VSCode. Ngoài ra các bạn có thể tham khảo thêm toàn bộ cách sử dụng của XDebug tại [đây](https://xdebug.org/docs/), để có thể debug ứng dụng một cách dễ dàng nhất.
+
+- `pathMappings`: Chỉ định đường dẫn của mã nguồn PHP trên máy so với VS Code.
+
+**Bước 3:** Đặt breakpoint trong file PHP và bắt đầu debug.
+
+- Đặt breakpoint bằng cách nhấn vào bên trái dòng mã mà bạn muốn dừng.
+- Chọn "Run and Debug" từ thanh bên trái (`Ctrl + Shift + D`).
+- Chọn cấu hình "Listen for Xdebug" và nhấn "Start Debugging".
+
+## Cài Đặt Xdebug Cho Ứng Dụng PHP Sử Dụng Docker Compose
+
+Nếu bạn đang sử dụng Docker Compose để chạy ứng dụng PHP, bạn cần cấu hình Xdebug trong Docker.
+
+### Cấu Hình Docker Compose
+
+**Bước 1:** Thêm Xdebug vào Dockerfile của PHP.
+
+Trong Dockerfile, thêm các dòng sau để cài đặt và cấu hình Xdebug:
+
+~~~dockerfile
+# Dockerfile
+FROM php:8.1-fpm
+
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+~~~
+
+**Bước 2:** Tạo file `xdebug.ini` trong thư mục dự án (cùng cấp với Dockerfile) với nội dung:
+
+~~~ini
+zend_extension=xdebug.so
+xdebug.mode=debug
+xdebug.start_with_request=yes
+xdebug.client_host=host.docker.internal
+xdebug.client_port=9003
+xdebug.log=/tmp/xdebug.log
+~~~
+
+- `xdebug.client_host=host.docker.internal`: Đảm bảo Xdebug kết nối được với VS Code trên máy host.
+
+**Bước 3:** Cập nhật file `docker-compose.yml`.
+
+Thêm các cổng cần thiết để Xdebug có thể kết nối với máy host:
+
+~~~yaml
+# docker-compose.yml
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "9003:9003"
+    environment:
+      XDEBUG_MODE: debug
+~~~
+
+### Cấu Hình VS Code Để Debug Với Docker
+
+Tương tự như phần cài đặt thủ công, bạn cần cấu hình `launch.json` trong VS Code:
+
+**Bước 1:** Mở thư mục dự án trong VS Code.
+
+**Bước 2:** Tạo thư mục `.vscode` nếu chưa có, và tạo file `launch.json` với nội dung sau:
+
+~~~json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug (Docker)",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}"
+            }
+        }
+    ]
+}
+~~~
+
+- `pathMappings`: Liên kết đường dẫn mã nguồn PHP trong container Docker với thư mục làm việc của bạn trên máy host.
+
+**Bước 3:** Đặt breakpoint trong mã PHP và bắt đầu debug như đã hướng dẫn ở phần trên.
+
+Xdebug là một công cụ tuyệt vời giúp bạn kiểm soát và phân tích mã PHP một cách hiệu quả. Việc cấu hình và sử dụng Xdebug với VS Code không quá phức tạp, dù bạn cài đặt ứng dụng PHP thủ công hay sử dụng Docker Compose. Hy vọng bài viết này giúp bạn thiết lập môi trường debug dễ dàng hơn. Nếu bạn có bất kỳ câu hỏi hoặc thắc mắc nào, đừng ngần ngại để lại bình luận dưới bài viết này!
