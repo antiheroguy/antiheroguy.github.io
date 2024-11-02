@@ -128,8 +128,6 @@ Thêm các cổng cần thiết để Xdebug có thể kết nối với máy ho
 
 ~~~yaml
 # docker-compose.yml
-version: '3.8'
-
 services:
   php:
     build:
@@ -139,6 +137,8 @@ services:
       - .:/var/www/html
     ports:
       - "9003:9003"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       XDEBUG_MODE: debug
 ~~~
