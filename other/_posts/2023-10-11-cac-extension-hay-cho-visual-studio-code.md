@@ -5,88 +5,88 @@ title:  "Các extension hay cho Visual Studio Code"
 
 Visual Studio Code (VSCode) đã trở thành một trong những trình soạn thảo mã nguồn phổ biến nhất cho các nhà phát triển. Một trong những lợi ích lớn của VSCode đó là khả năng mở rộng sự tích hợp thông qua các extension. Hôm nay, chúng ta sẽ khám phá một số extension hữu ích mà bạn có thể cài đặt để nâng cao trải nghiệm làm việc với VSCode.
 
-## [Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) (bmewburn.vscode-intelephense-client)
-   - Một extension mạnh mẽ cho phát triển PHP với tích hợp phân tích mã nguồn.
+## Những Extension VS Code hữu ích giúp cải thiện trải nghiệm lập trình
 
-## [Tailwind CSS Intellisense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) (bradlc.vscode-tailwindcss)
-   - Được thiết kế cho phát triển với Tailwind CSS, hỗ trợ autocompletion và hiển thị lớp CSS.
+### [Bookmarks](https://marketplace.visualstudio.com/items?itemName=alefragnani.bookmarks) (alefragnani.bookmarks)
 
-## [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) (dbaeumer.vscode-eslint)
-   - Hỗ trợ phát triển JavaScript với kiểm tra lỗi và gợi ý sửa lỗi.
+* Cho phép bạn đánh dấu các dòng code quan trọng và chuyển nhanh giữa các điểm đánh dấu trong file hoặc giữa nhiều file. Rất hữu ích khi bạn làm việc với file dài.
 
-## [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) (eamodio.gitlens)
-   - Cung cấp thông tin và tích hợp Git tới trình soạn thảo của bạn, giúp theo dõi lịch sử và nhận xét.
+### [Change Case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case) (wmaurer.change-case)
 
-## [Run On Save](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave) (emeraldwalk.RunOnSave)
-   - Tự động thực thi các tác vụ hoặc lệnh sau khi bạn lưu tệp tin.
+* Dễ dàng chuyển đổi chuỗi giữa các định dạng camelCase, snake\_case, kebab-case, PascalCase,... chỉ bằng vài phím bấm.
 
-## [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) (formulahendry.auto-rename-tag)
-   - Tự động đổi tên thẻ HTML mở và đóng khi bạn sửa một thẻ.
+### [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) (streetsidesoftware.code-spell-checker)
 
-## [Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind) (heybourn.headwind)
-   - Hỗ trợ sắp xếp lại các lớp CSS trong file CSS/SCSS theo thứ tự chuẩn.
+* Tự động kiểm tra chính tả trong comment, chuỗi văn bản, tài liệu Markdown,... giúp bạn tránh những lỗi chính tả nhỏ nhặt nhưng đáng tiếc.
 
-## [Edit CSV](https://marketplace.visualstudio.com/items?itemName=janisdd.vscode-edit-csv) (janisdd.vscode-edit-csv)
-   - Biến VSCode thành một trình soạn thảo CSV mạnh mẽ.
+### [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers) (ms-azuretools.vscode-containers)
 
-## [PHP Namespace Resolver](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver) (MehediDracula.php-namespace-resolver)
-   - Tự động nhập và quản lý các khai báo PHP namespaces.
+* Hỗ trợ quản lý Docker container, image, volume ngay trong VS Code. Có thể xem logs, mở terminal, attach vào container rất thuận tiện.
 
-## [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) (mhutchie.git-graph)
-    - Hiển thị biểu đồ Git tương tác và dễ đọc.
+### [Fluent Icons](https://marketplace.visualstudio.com/items?itemName=miguelsolorio.fluent-icons) (miguelsolorio.fluent-icons)
 
-## [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) (ms-azuretools.vscode-docker)
-    - Hỗ trợ phát triển ứng dụng Docker với tích hợp dự án Docker.
+* Bộ icon theo phong cách Fluent Design hiện đại, tạo cảm giác dễ chịu và mới mẻ cho sidebar và file explorer của VS Code.
 
-## [Sublime Text Keymap](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings) (ms-vscode.sublime-keybindings)
-    - Cho phép bạn sử dụng các phím tắt từ Sublime Text trong VSCode.
+### [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) (eamodio.gitlens)
 
-## [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) (octref.vetur)
-    - Dành riêng cho phát triển Vue.js, hỗ trợ syntax highlighting và mục tiêu phát triển Vue.
+* Mở rộng chức năng Git trong VS Code: xem lịch sử commit theo dòng, blame rõ ràng từng thay đổi, hiển thị tác giả, thời gian chỉnh sửa... cực kỳ hữu dụng khi làm việc nhóm.
 
-## [Indent Rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow) (oderwat.indent-rainbow)
-    - Làm nổi bật các cặp dấu ngoặc để dễ dàng theo dõi phạm vi hiện tại.
+### [Increment Selection](https://marketplace.visualstudio.com/items?itemName=albymor.increment-selection) (albymor.increment-selection)
 
-## [Laravel Blade](https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel-blade) (onecentlin.laravel-blade)
-    - Hỗ trợ phát triển Laravel Blade templates với syntax highlighting và snippets.
+* Cho phép bạn mở rộng vùng chọn một cách thông minh theo cấu trúc mã nguồn, không chỉ đơn thuần là chọn từ hoặc dòng như mặc định.
 
-## [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme) (PKief.material-icon-theme)
-    - Tạo thay đổi giao diện với biểu tượng tùy chỉnh cho các loại tệp tin.
+### [Indent Rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow) (oderwat.indent-rainbow)
 
-## [Swagger Viewer](https://marketplace.visualstudio.com/items?itemName=qvtec3.swagger-php-annotation) (qvtec3.swagger-php-annotation)
-    - Xem và chỉnh sửa tệp JSON/YAML Swagger trong VSCode.
+* Tô màu cho các mức thụt dòng bằng màu sắc khác nhau, giúp dễ phân biệt các cấp độ lồng nhau trong code, đặc biệt hữu ích với Python hoặc YAML.
 
-## [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) (redhat.vscode-yaml)
-    - Hỗ trợ phát triển với các tệp YAML, giúp kiểm tra cú pháp và gợi ý.
+### [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) (ritwickdey.liveserver)
 
-## [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) (ritwickdey.LiveServer)
-    - Tạo một máy chủ cục bộ để xem trực tiếp trang web trong VSCode.
+* Mở một server cục bộ và reload trang tự động khi bạn chỉnh sửa file HTML, CSS, JS. Phù hợp khi làm web tĩnh hoặc thử nghiệm nhanh giao diện.
 
-## [Auto Import](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport) (steoates.autoimport)
-    - Tự động nhập các thành phần trong các tệp TypeScript và JavaScript.
+### [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=pkief.material-icon-theme) (pkief.material-icon-theme)
 
-## [Sort Lines](https://marketplace.visualstudio.com/items?itemName=Tyriar.sort-lines) (Tyriar.sort-lines)
-    - Sắp xếp các dòng trong tệp tin theo thứ tự bạn chọn.
+* Thay đổi icon file/folder theo Material Design. Hỗ trợ nhiều định dạng file và framework như Angular, Vue, Laravel, Docker,...
 
-## [IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode) (VisualStudioExptTeam.vscodeintellicode)
-    - Hỗ trợ phát triển với sự gợi ý thông qua học máy.
+### [One Dark Pro (Material Theme)](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme) (zhuangtongfa.material-theme)
 
-## [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (Vue.volar)
-    - Extension cho phát triển Vue 3 với hỗ trợ vượt trội.
+* Một trong những theme phổ biến nhất cho VS Code, lấy cảm hứng từ Atom's One Dark với màu sắc hài hòa, dễ chịu cho mắt khi làm việc lâu.
 
-## [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost) (wix.vscode-import-cost)
-    - Hiển thị kích thước tệp tin của các mô-đun được nhập.
+### [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) (ms-vscode-remote.remote-wsl)
 
-## [Change Case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case) (wmaurer.change-case)
-    - Chuyển đổi văn bản thành các kiểu chữ hoa hoặc kiểu chữ thường khác nhau.
+* Giúp bạn mở và phát triển dự án trong môi trường WSL (Windows Subsystem for Linux) ngay trong VS Code, như thể bạn đang làm việc trên Linux thực thụ.
 
-## [Xdebug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) (xdebug.php-debug)
-    - Hỗ trợ gỡ lỗi PHP với Xdebug trong VSCode.
+### [Run on Save](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave) (emeraldwalk.runonsave)
 
-## [SQLite3 Editor](https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor) (yy0931.vscode-sqlite3-editor)
-    - Dễ dàng quản lý cơ sở dữ liệu SQLite trong VSCode.
+* Tự động chạy một hoặc nhiều lệnh terminal khi bạn lưu file, chẳng hạn như `eslint`, `prettier`, `php artisan`,... Rất hữu ích cho CI/CD nhẹ tại local.
 
-## [Material Theme](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.material-theme) (zhuangtongfa.material-theme)
-    - Thay đổi giao diện của VSCode với giao diện Material Design.
+### [Sort Lines](https://marketplace.visualstudio.com/items?itemName=tyriar.sort-lines) (tyriar.sort-lines)
+
+* Sắp xếp các dòng văn bản theo thứ tự alphabet (tăng hoặc giảm). Cực kỳ tiện lợi khi bạn xử lý danh sách, config, enum,...
+
+### [Sublime Keymap](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings) (ms-vscode.sublime-keybindings)
+
+* Mang toàn bộ keybinding của Sublime Text sang VS Code. Nếu bạn là fan của Sublime, extension này sẽ giúp bạn cảm thấy quen thuộc ngay lập tức.
+
+## Xuất & nhập danh sách extensions giữa các máy
+
+Nếu bạn muốn **chuyển extension từ máy A sang máy B**, hãy làm như sau:
+
+### Xuất danh sách extension:
+
+~~~bash
+code --list-extensions > extensions.txt
+~~~
+
+### Import vào máy khác:
+
+~~~bash
+cat extensions.txt | xargs -n 1 code --install-extension
+~~~
+
+💡 Với PowerShell (trên Windows), bạn dùng:
+
+~~~bash
+Get-Content extensions.txt | ForEach-Object { code --install-extension $_ }
+~~~
 
 Với sự đa dạng của các extension này, bạn có thể tùy chỉnh VSCode theo cách tốt nhất phù hợp với nhu cầu phát triển của mình. Hãy tải xuống và thử nghiệm để tận dụng sức mạnh của trình soạn thảo mã nguồn này.
